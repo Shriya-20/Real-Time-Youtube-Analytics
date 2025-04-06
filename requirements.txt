@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 google-api-python-client
 kafka-python
 pandas
+=======
+google-api-python-client
+kafka-python
+pandas
+>>>>>>> b5c6f8ab4f97b85eaebc06331846aeaff61a9892
