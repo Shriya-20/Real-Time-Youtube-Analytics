@@ -3,5 +3,7 @@ kafka-python
 pandas
 pyspark
 isodate
+requests
+
 
 

@@ -35,6 +35,7 @@ from kafka import KafkaProducer
 
 # Configuration
 API_KEY = "AIzaSyDii0e5q-U-YI_bqRghuaxpq1BGX0J20Zg"
+# API_KEY = "IzaSyCCK8Z9WdkcjR9yAQMfoJkwjJYF2JfEjCg"
 KAFKA_BOOTSTRAP_SERVERS = "localhost:9092"
 KAFKA_TOPIC = "trending_videos"
 REGION_CODE = "IN"
@@ -123,5 +124,17 @@ def main():
         producer.flush()
         producer.close()
 
+
 if __name__ == "__main__":
-    main()
+    while True:  # Runs forever
+        try:
+            print(f"\n🔍 {datetime.now()} - Fetching trending videos...")
+            main()  # Your existing main function
+            print("Fetch completed. Waiting...")
+            time.sleep(3600)  # Wait 1 hour (change 3600 to seconds you want)
+        except KeyboardInterrupt:
+            print("\nStopped by user")
+            break
+        except Exception as e:
+            print(f"Error: {e}")
+            time.sleep(300)  # Wait 5 min if error occurs
