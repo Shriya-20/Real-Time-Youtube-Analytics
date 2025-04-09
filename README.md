@@ -1,4 +1,4 @@
-Real-Time YouTube Trending Video Analyzer (India)
+## Real-Time YouTube Trending Video Analyzer (India)
 
 This project tracks **real-time trending YouTube videos in India** using the YouTube Data API and a big data pipeline built with **Apache Kafka**, **Apache Spark**, and **Docker**. It collects, processes, and displays insights like most viewed categories, top active channels, and trending video titles using **windowed aggregations**.
 
