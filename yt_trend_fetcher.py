@@ -5,7 +5,7 @@
 
 from googleapiclient.discovery import build
 
-API_KEY = "AIzaSyDii0e5q-U-YI_bqRghuaxpq1BGX0J20Zg"
+API_KEY = ""
 youtube = build('youtube', 'v3', developerKey=API_KEY)
 
 # part="snippet,statistics": This specifies that the response should include both the video snippet (title, description, thumbnails, etc.) and statistics (like views, likes, dislikes, etc.).
@@ -32,10 +32,11 @@ import time
 import requests
 from datetime import datetime
 from kafka import KafkaProducer
+from dotenv import load_dotenv
 
-# Configuration
-API_KEY = "AIzaSyDii0e5q-U-YI_bqRghuaxpq1BGX0J20Zg"
-# API_KEY = "IzaSyCCK8Z9WdkcjR9yAQMfoJkwjJYF2JfEjCg"
+load_dotenv()
+
+API_KEY = os.getenv("API_KEY")
 KAFKA_BOOTSTRAP_SERVERS = "localhost:9092"
 KAFKA_TOPIC = "trending_videos"
 REGION_CODE = "IN"
