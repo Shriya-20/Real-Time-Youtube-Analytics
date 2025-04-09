@@ -1,0 +1,17 @@
+FROM python:3.8-slim 
+WORKDIR /app
+
+# Install system dependencies (for SSL/HTTP support)
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends gcc python3-dev && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt
+
+# Copy producer script
+COPY yt_Trend_analyzer.py .
+
+CMD ["python", "yt_Trend_analyzer.py"]

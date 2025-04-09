@@ -5,7 +5,7 @@
 
 from googleapiclient.discovery import build
 
-API_KEY = "AIzaSyDii0e5q-U-YI_bqRghuaxpq1BGX0J20Zg"
+API_KEY = ""
 youtube = build('youtube', 'v3', developerKey=API_KEY)
 
 # part="snippet,statistics": This specifies that the response should include both the video snippet (title, description, thumbnails, etc.) and statistics (like views, likes, dislikes, etc.).
@@ -32,9 +32,11 @@ import time
 import requests
 from datetime import datetime
 from kafka import KafkaProducer
+from dotenv import load_dotenv
 
-# Configuration
-API_KEY = "AIzaSyDii0e5q-U-YI_bqRghuaxpq1BGX0J20Zg"
+load_dotenv()
+
+API_KEY = os.getenv("API_KEY")
 KAFKA_BOOTSTRAP_SERVERS = "localhost:9092"
 KAFKA_TOPIC = "trending_videos"
 REGION_CODE = "IN"
@@ -123,5 +125,17 @@ def main():
         producer.flush()
         producer.close()
 
+
 if __name__ == "__main__":
-    main()
+    while True:  # Runs forever
+        try:
+            print(f"\n🔍 {datetime.now()} - Fetching trending videos...")
+            main()  # Your existing main function
+            print("Fetch completed. Waiting...")
+            time.sleep(3600)  # Wait 1 hour (change 3600 to seconds you want)
+        except KeyboardInterrupt:
+            print("\nStopped by user")
+            break
+        except Exception as e:
+            print(f"Error: {e}")
+            time.sleep(300)  # Wait 5 min if error occurs
